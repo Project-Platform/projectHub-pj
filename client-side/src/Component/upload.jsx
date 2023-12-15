@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { Input, Typography, Button } from "@material-tailwind/react";
-import { Navigate } from "react-router-dom";
 export function Upload() {
   const [descCount, setDescCount] = useState(0);
   const [ideaTitle, setIdeaTitle] = useState("");
@@ -12,6 +12,7 @@ export function Upload() {
   const [youtube, setYoutube] = useState("");
   const [mentorId, setMentorId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleDescChange = (e) => {
     let inputValue = e.target.value;
@@ -40,11 +41,11 @@ export function Upload() {
       });
 
       if (response.data.message === "Project Uploaded successfully"){
-        // Navigate('/score');
+        navigate('/dashboard',{state:response.data.message});
         console.log("Done")
       }
       if (response.data.message=== "Similarity score is high ."){
-        Navigate('/score');
+        navigate('/score',{state: response.data});
       }
       if (response.data.message === "fields are required") {
         setErrorMessage(response.data.missingFields+" all these are required!");
@@ -97,7 +98,7 @@ export function Upload() {
           <Input
             size="md"
             value={field}
-            placeholder="Ecopoint"
+            placeholder="Machine learning"
             className="border-t-blue-gray-200 focus:border-t-gray-900 w-full text-center"
             onChange={(e) => {setField(e.target.value);
               handleChange(e);}}
