@@ -1,25 +1,41 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Card, CardBody, Typography } from "@material-tailwind/react";
+import { Card, CardBody, CardFooter, Button, Typography } from "@material-tailwind/react";
 
 export function CardDefault() {
   const location = useLocation();
   const responseData = location.state;
+  const dataProject = responseData?.data;
 
   return (
-      <Card className="mt-6 w-96">
-        <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-          {responseData && (
-        <div>
-          {/* Render your data here */}
-          <h1>{responseData.message}</h1>
-          {/* Add more JSX to display other properties from responseData */}
-        </div>
+    <div className=" mt-6">
+      {responseData && (
+            <Typography variant="h5" color="green" className="flex justify-center items-center m-4">
+              <h1>{responseData.message}</h1>
+            </Typography>
       )}
-          </Typography>
-        </CardBody>
-      </Card>
+
+      {dataProject && (
+        <Card className="flex justify-between w-full md:w-full p-4 transition-transform transform hover:scale-105">
+          <CardBody>
+            <Typography variant="h5" color="blue-gray" className="mb-2 font-bold">
+              {dataProject.ideaTitle}
+            </Typography>
+            <Typography className="mb-4">
+              {dataProject.ideaDescription}
+            </Typography>
+            {/* <Typography variant="h6" color="green" className="font-bold">
+              Score: {dataProject.score}
+            </Typography> */}
+          </CardBody>
+          <CardFooter className="pt-2">
+            <Button color="blue" className="transition-transform transform hover:scale-105">
+              Read More
+            </Button>
+          </CardFooter>
+        </Card>
+      )}
+    </div>
   );
 }
 

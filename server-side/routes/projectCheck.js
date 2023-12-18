@@ -21,7 +21,7 @@ router.post('/check', async (req, res) => {
 
         const searchResults = await semanticSearch(embeddings);
         // Filter projects with a score greater than 0.7
-        const highScoreProjects = searchResults.filter(result => result.score > 0.9);
+        const highScoreProjects = searchResults.filter(result => result.score > 0.7);
         if (highScoreProjects.length===0){
             const newProject = new userProject({ ideaTitle, domain, field, ideaDescription, github, youtube, mentorId, embeddings, author });
             console.log(newProject);

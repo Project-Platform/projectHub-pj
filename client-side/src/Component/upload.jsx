@@ -40,8 +40,8 @@ export function Upload() {
         },
       });
 
-      if (response.data.message === "Project Uploaded successfully"){
-        navigate('/dashboard',{state:response.data.message});
+      if (response.data.message === "Project Uploaded successfully."){
+        navigate('/dashboard',{state:response.data});
         console.log("Done")
       }
       if (response.data.message=== "Similarity score is high ."){
