@@ -25,7 +25,7 @@ export function Upload() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/project/check", {
+      const response = await axios.post("https://project-hub-pj.vercel.app/project/check", {
         ideaTitle,
         domain,
         field,
