@@ -22,7 +22,13 @@ mongoose
     console.error("Error connecting to MongoDB Atlas:", err);
   });
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin:["https://project-hub-pj-yzhg.vercel.app/"],
+    methods:["POST","GET"],
+    credentials: true
+  }
+));
 
 
 app.listen(port, () => {
